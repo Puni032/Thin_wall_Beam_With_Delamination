@@ -1,0 +1,72 @@
+Material Properties
+E1 (N/m^2) E2 (N/m^2) E3 (N/m^2) nu12 nu13 nu23 G12 (N/m^2) G13 (N/m^2) G23 (N/m^2) Density (rho IN Kg/m^3)
+142E+9 9.8E+9 9.8E+9 0.42 0.42 0.3 6.0E+9 6.0E+9 4.8E+9 7855
+Geometric properties
+Length
+0.762
+
+Layup configurations in the cross section
+Begin
+45 45
+-45 -45
+45 -45 -45 45
+End
+
+
+Thickness of each ply in the cross section
+Begin 
+0.000127 0.000127  
+0.000127 0.000127  
+0.000127 0.000127 0.000127 0.000127 
+End
+
+
+Enter the layup distribution by numbering the strips in the cross section
+Strip No. Layup No.
+Begin
+1 2
+2 1
+3 1
+4 2
+5 2
+6 2
+7 3
+End
+
+Geometrical points for connectivity
+xpoints ypoints
+Begin
+1 -0.025 -0.0125
+2 -0.025 0.0125
+3 0 0.0125
+4 0.025 0.0125
+5 0.025 -0.0125
+6 0 -0.0125
+End
+
+Geometrical connectivity of the cross section
+Strip No. (Start node)  (Stop node)
+Begin
+1 1 2
+2 2 3
+3 3 4
+4 4 5
+5 5 6
+6 6 1
+7 6 3
+End
+
+Strip number with delaminations
+Begin
+0
+End
+
+Number of sublaminates in each delaminated strip
+Begin
+2
+End
+
+Sublaminate distribution in strip due to delamination
+Begin
+0 4 8
+End
