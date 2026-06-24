@@ -1,0 +1,77 @@
+
+
+
+netdof=nenod*7;
+Bl=zeros(netdof,4);
+Br=zeros(23,netdof);
+Brr=zeros(5,netdof);
+Brt=zeros(8,netdof);
+for i=1:nenod
+Bl(i,1)=d1N(i);
+Bl(nenod+i*2-1,2)=d2Nh(i);
+Bl(nenod+2*i,2)=d2Nh1(i);
+Bl(2*nenod+i*2-1,3)=d2Nh(i);
+Bl(2*nenod+2*i,3)=d2Nh1(i);
+Bl(3*nenod+i*2-1,4)=d2Nh(i);
+Bl(3*nenod+2*i,4)=d2Nh1(i);
+
+Brr(1,i)=d1N1(i);
+Brr(2,nenod+2*i-1)=d1Nh(i);
+Brr(2,nenod+2*i)=d1Nh1(i);
+Brr(3,2*nenod+2*i-1)=d2Nh(i);
+Brr(3,2*nenod+2*i)=d2Nh1(i);
+Brr(4,3*nenod+2*i-1)=d2Nh(i);
+Brr(4,3*nenod+2*i)=d2Nh1(i);
+Brr(5,nenod+2*i-1)=d2Nh(i);
+Brr(5,nenod+2*i)=d2Nh1(i);
+Brt(1,i)=N1(i);
+Brt(2,nenod+2*i-1)=Nh(i);
+Brt(2,nenod+2*i)=Nh1(i);
+Brt(3,i)=d1N1(i);
+Brt(4,3*nenod+2*i-1)=d1Nh(i);
+Brt(4,3*nenod+2*i)=d1Nh1(i);
+Brt(5,4*nenod+2*i-1)=d1Nh(i);
+Brt(5,4*nenod+2*i)=d1Nh1(i);
+Brt(6,3*nenod+2*i-1)=d2Nh(i);
+Brt(6,3*nenod+2*i)=d2Nh1(i);
+Brt(7,4*nenod+2*i-1)=d2Nh(i);
+Brt(7,4*nenod+2*i)=d2Nh1(i);
+Brt(8,2*nenod+2*i-1)=d2Nh(i);
+Brt(8,2*nenod+2*i)=d2Nh1(i);
+end
+Br(1:5,:)=Brr;
+Br(6:13,:)=Brt;
+Br(14:18,:)=Brr;
+Br(19:23,:)=Brr;
+% Bl=[d1N1 d1N2 0 0 0 0 0 0 0 0 0 0 0 0;
+%     0 0 d2Nh1 d2Nh2 d2Nh3 d2Nh4 0 0 0 0 0 0 0 0;
+%     0 0 0 0 0 0 d2Nh1 d2Nh2 d2Nh3 d2Nh4 0 0 0 0;
+%     0 0 0 0 0 0 0 0 0 0 d2Nh1 d2Nh2 d2Nh3 d2Nh4]';
+S=[S11 S12 S14 -S13 S16 zeros(1,18);
+    0 0 0 0 0 S12 -S22 S16 S24 S23 S46 -S36 S66 zeros(1,10);
+    zeros(1,13) S14 S24 S44 -S34 S46 0 0 0 0 0;
+    zeros(1,18) -S13 -S23 -S34 -S33 -S36];
+% Br=[d1N1 d1N2 0 0 0 0 0 0 0 0 0 0 0 0;
+%     0 0 d1Nh1 d1Nh2 d1Nh3 d1Nh4 0 0 0 0 0 0 0 0;
+%     0 0 0 0 0 0 d2Nh1 d2Nh2 d2Nh3 d2Nh4 0 0 0 0;
+%     0 0 0 0 0 0 0 0 0 0 d2Nh1 d2Nh2 d2Nh3 d2Nh4;
+%     0 0 d2Nh1 d2Nh2 d2Nh3 d2Nh4 0 0 0 0 0 0 0 0;
+%     N1 N2 0 0 0 0 0 0 0 0 0 0 0 0;
+%     0 0 Nh1 Nh2 Nh3 Nh4 0 0 0 0 0 0 0 0;
+%     d1N1 d1N2 0 0 0 0 0 0 0 0 0 0 0 0;
+%     0 0 0 0 0 0 d1Nh1 d1Nh2 d1Nh3 d1Nh4 0 0 0 0;
+%     0 0 0 0 0 0 0 0 0 0 d1Nh1 d1Nh2 d1Nh3 d1Nh4;
+%     0 0 0 0 0 0 d2Nh1 d2Nh2 d2Nh3 d2Nh4 0 0 0 0;
+%     0 0 0 0 0 0 0 0 0 0 d2Nh1 d2Nh2 d2Nh3 d2Nh4;
+%     0 0 d2Nh1 d2Nh2 d2Nh3 d2Nh4 0 0 0 0 0 0 0 0;
+%     d1N1 d1N2 0 0 0 0 0 0 0 0 0 0 0 0;
+%     0 0 d1Nh1 d1Nh2 d1Nh3 d1Nh4 0 0 0 0 0 0 0 0;
+%     0 0 0 0 0 0 d2Nh1 d2Nh2 d2Nh3 d2Nh4 0 0 0 0;
+%     0 0 0 0 0 0 0 0 0 0 d2Nh1 d2Nh2 d2Nh3 d2Nh4;
+%     0 0 d2Nh1 d2Nh2 d2Nh3 d2Nh4 0 0 0 0 0 0 0 0;
+%     d1N1 d1N2 0 0 0 0 0 0 0 0 0 0 0 0;
+%     0 0 d1Nh1 d1Nh2 d1Nh3 d1Nh4 0 0 0 0 0 0 0 0;
+%     0 0 0 0 0 0 d2Nh1 d2Nh2 d2Nh3 d2Nh4 0 0 0 0;
+%     0 0 0 0 0 0 0 0 0 0 d2Nh1 d2Nh2 d2Nh3 d2Nh4;
+%     0 0 d2Nh1 d2Nh2 d2Nh3 d2Nh4 0 0 0 0 0 0 0 0];
+Ke=Bl*S*Br;
