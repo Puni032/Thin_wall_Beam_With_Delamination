@@ -1,1 +1,1 @@
-# MSG_With_Delamination
+# Thin_Wall_beam_With_Delamination
